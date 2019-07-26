@@ -1,0 +1,16 @@
+version: "3"
+services: 
+  log:
+    image: openresty/openresty:alpine
+    ports: 
+    - "8080:8080"
+    volumes: 
+    - "./nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf"
+    - "./log1:/opt/log1"
+    - "./log2:/opt/log2"
+  syslog:
+    image: balabit/syslog-ng
+    ports: 
+    - "514:514/udp"
+    - "601:601"
+    - "6514:6514"
